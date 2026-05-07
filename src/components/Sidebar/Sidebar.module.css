@@ -1,0 +1,118 @@
+.sidebar {
+  width: var(--sidebar-width);
+  height: 100vh;
+  background: var(--card);
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 100;
+  padding: 2rem 1.25rem;
+  transition: var(--transition);
+}
+
+[data-theme='dark'] .sidebar {
+  background: rgba(15, 23, 42, 0.8);
+  backdrop-filter: blur(20px);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.5rem;
+  margin-bottom: 3rem;
+}
+
+.logoIcon {
+  width: 44px;
+  height: 44px;
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 16px var(--ring);
+  transform: rotate(-5deg);
+  transition: var(--transition);
+}
+
+.logo:hover .logoIcon {
+  transform: rotate(0deg) scale(1.1);
+}
+
+.logoText {
+  font-size: 1.5rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, var(--foreground), var(--primary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: -1px;
+}
+
+.nav {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.navItem {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.875rem 1.25rem;
+  border-radius: var(--radius);
+  color: var(--foreground);
+  opacity: 0.7;
+  font-weight: 500;
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+
+.navItem:hover {
+  opacity: 1;
+  background: var(--input);
+  transform: translateX(5px);
+}
+
+.active {
+  opacity: 1;
+  background: linear-gradient(90deg, var(--ring), transparent);
+  color: var(--primary);
+  font-weight: 600;
+  border-left: 4px solid var(--primary);
+}
+
+.activeIndicator {
+  margin-left: auto;
+  color: var(--primary);
+}
+
+.footer {
+  margin-top: auto;
+  padding-top: 1.5rem;
+}
+
+.logoutBtn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.875rem 1.25rem;
+  border-radius: var(--radius);
+  color: var(--error);
+  font-weight: 600;
+  transition: var(--transition);
+  opacity: 0.8;
+}
+
+.logoutBtn:hover {
+  opacity: 1;
+  background: rgba(239, 68, 68, 0.1);
+  transform: translateX(5px);
+}
+

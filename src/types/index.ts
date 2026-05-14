@@ -1,7 +1,12 @@
+export type UserRole = 'admin' | 'manager' | 'employee';
+export type DepartmentName = 'HR' | 'Finance' | 'Sales' | 'IT' | 'Admin';
+
 export interface User {
   id: string;
+  name: string;
   email: string;
-  role: 'admin';
+  role: UserRole;
+  department: DepartmentName;
 }
 
 export interface Employee {
@@ -15,6 +20,8 @@ export interface Employee {
   salary: number;
   joiningDate: string;
   status: 'Active' | 'On Leave' | 'Resigned';
+  role: UserRole;
+  permissions?: string[];
   createdAt: string;
   updatedAt: string;
 }

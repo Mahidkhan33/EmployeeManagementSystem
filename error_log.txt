@@ -1,4 +1,0 @@
-
-[2026-05-07T01:15:36.086Z] Login Error: Error: queryTxt ETIMEOUT todoapp.ddvqx63.mongodb.net
-    at QueryReqWrap.onresolve [as oncomplete] (node:internal/dns/promises:294:17)
-    at QueryReqWrap.callbackTrampoline (node:internal/async_hooks:130:17)

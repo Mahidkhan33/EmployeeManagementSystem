@@ -1,7 +1,19 @@
+'use client';
+
+import { useEffect, useState } from 'react';
 import { Bell, Search, User } from 'lucide-react';
 import styles from './Header.module.css';
 
 export default function Header() {
+  const [user, setUser] = useState<{ name: string; role: string } | null>(null);
+
+  useEffect(() => {
+    const storedUser = localStorage.getItem('ems_user');
+    if (storedUser) {
+      setUser(JSON.parse(storedUser));
+    }
+  }, []);
+
   return (
     <header className={styles.header}>
       <div className={styles.search}>
@@ -19,8 +31,8 @@ export default function Header() {
             <User size={20} />
           </div>
           <div className={styles.profileInfo}>
-            <span className={styles.profileName}>Admin</span>
-            <span className={styles.profileRole}>Admin</span>
+            <span className={styles.profileName}>{user?.name || 'Guest'}</span>
+            <span className={styles.profileRole}>{user?.role ? user.role.charAt(0).toUpperCase() + user.role.slice(1) : 'Guest'}</span>
           </div>
         </div>
       </div>

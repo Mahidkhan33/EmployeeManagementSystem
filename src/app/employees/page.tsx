@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import Link from 'next/link';
 import { 
   Plus, 
@@ -22,38 +22,45 @@ export default function EmployeesPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  useEffect(() => {
-    fetchEmployees();
-  }, []);
-
-  const fetchEmployees = async () => {
+  const fetchEmployees = useCallback(async () => {
     try {
       setLoading(true);
-      const res = await fetch('/api/employees');
+      const token = localStorage.getItem('ems_token');
+      const res = await fetch('/api/employees', {
+        headers: token ? { Authorization: `Bearer ${token}` } : {}
+      });
       const data = await res.json();
       if (data.data) {
         setEmployees(data.data);
       } else {
         setError(data.error || 'Failed to fetch employees');
       }
-    } catch (err) {
+    } catch {
       setError('An error occurred while fetching employees');
     } finally {
       setLoading(false);
     }
-  };
+  }, []);
+
+  useEffect(() => {
+    fetchEmployees();
+  }, [fetchEmployees]);
 
   const handleDelete = async (id: string) => {
     if (!confirm('Are you sure you want to delete this employee?')) return;
-    
     try {
-      const res = await fetch(`/api/employees/${id}`, { method: 'DELETE' });
+      const token = localStorage.getItem('ems_token');
+      const res = await fetch(`/api/employees/${id}`, {
+        method: 'DELETE',
+        headers: token ? { Authorization: `Bearer ${token}` } : {}
+      });
       if (res.ok) {
         setEmployees(employees.filter(emp => emp._id !== id));
       } else {
-        alert('Failed to delete employee');
+        const data = await res.json();
+        alert(data.error || 'Failed to delete employee');
       }
-    } catch (err) {
+    } catch {
       alert('An error occurred');
     }
   };
@@ -139,8 +146,12 @@ export default function EmployeesPage() {
                       </td>
                       <td>
                         <div className={styles.rowActions}>
-                          <button title="View"><Eye size={18} /></button>
-                          <button title="Edit"><Edit2 size={18} /></button>
+                          <Link href={`/employees/${emp._id}`} title="View">
+                            <Eye size={18} />
+                          </Link>
+                          <Link href={`/employees/edit/${emp._id}`} title="Edit">
+                            <Edit2 size={18} />
+                          </Link>
                           <button 
                             title="Delete" 
                             className={styles.delete}

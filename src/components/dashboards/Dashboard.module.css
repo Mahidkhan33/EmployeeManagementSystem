@@ -1,0 +1,518 @@
+/* Shared dashboard component styles — imported by all dept dashboards */
+
+.loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 60vh;
+  font-size: 1.1rem;
+  color: var(--text-muted, #94a3b8);
+  font-weight: 600;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 2.5rem;
+  animation: fadeIn 0.4s ease-out;
+}
+
+.roleBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.35rem 0.85rem;
+  border-radius: 20px;
+  font-size: 0.72rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 0.75rem;
+}
+
+.title {
+  font-size: 2.4rem;
+  font-weight: 800;
+  letter-spacing: -1.2px;
+  color: var(--foreground);
+  margin-bottom: 0.4rem;
+}
+
+.subtitle {
+  font-size: 1rem;
+  opacity: 0.5;
+  font-weight: 500;
+}
+
+.headerActions {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.primaryBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.8rem 1.5rem;
+  background: var(--primary, #4f46e5);
+  color: white;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
+}
+
+.primaryBtn:hover:not(:disabled) {
+  opacity: 0.9;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(79, 70, 229, 0.3);
+}
+
+.primaryBtn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Stat Cards */
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2.5rem;
+}
+
+.statCard {
+  background: var(--card);
+  padding: 2rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.2s ease;
+  box-shadow: var(--shadow-sm);
+}
+
+.statCard:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--primary);
+}
+
+.statLabel {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  opacity: 0.45;
+  margin-bottom: 0.5rem;
+}
+
+.statValue {
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--foreground);
+  letter-spacing: -0.8px;
+}
+
+.statTrend {
+  margin-top: 0.4rem;
+}
+
+.trendLabel {
+  font-size: 0.8rem;
+  opacity: 0.45;
+  font-weight: 600;
+}
+
+.statIcon {
+  width: 56px;
+  height: 56px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* Layout Grid */
+.dashboardGrid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 2rem;
+}
+
+/* Cards */
+.mainCard, .sideCard {
+  background: var(--card);
+  padding: 2.5rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
+}
+
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.cardTitle {
+  font-size: 1.3rem;
+  font-weight: 700;
+  letter-spacing: -0.4px;
+}
+
+.viewAll {
+  color: var(--primary);
+  font-size: 0.85rem;
+  font-weight: 700;
+  padding: 0.5rem 1rem;
+  border-radius: 10px;
+  background: var(--primary-light);
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.viewAll:hover {
+  background: var(--primary);
+  color: white;
+}
+
+.badge {
+  background: var(--primary-light);
+  color: var(--primary);
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.35rem 0.8rem;
+  border-radius: 20px;
+}
+
+/* Table */
+.tableWrapper { margin: 0 -1rem; }
+
+.table { width: 100%; border-collapse: collapse; }
+
+.table th {
+  text-align: left;
+  padding: 0.85rem 1.25rem;
+  color: var(--foreground);
+  opacity: 0.4;
+  font-size: 0.7rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  border-bottom: 1px solid var(--border);
+}
+
+.table td {
+  padding: 1.1rem 1.25rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  border-bottom: 1px solid var(--border);
+  transition: background 0.15s ease;
+}
+
+.table tr:last-child td { border-bottom: none; }
+.table tr:hover td { background: var(--input); }
+.clickableRow { cursor: pointer; }
+
+/* User display */
+.userName { display: flex; align-items: center; gap: 1rem; }
+
+.userAvatar {
+  width: 38px;
+  height: 38px;
+  background: var(--primary);
+  color: white;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+/* Status pills */
+.status {
+  padding: 0.35rem 0.85rem;
+  border-radius: 20px;
+  font-size: 0.68rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  display: inline-block;
+}
+
+.active { background: #dcfce7; color: #16a34a; }
+.onleave { background: #fef3c7; color: #d97706; }
+.resigned { background: #fee2e2; color: #dc2626; }
+.paid { background: #dcfce7; color: #16a34a; }
+.pending { background: #fef3c7; color: #d97706; }
+
+/* Tags */
+.deptTag {
+  display: inline-block;
+  padding: 0.25rem 0.65rem;
+  background: var(--primary-light);
+  color: var(--primary);
+  border-radius: 8px;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.roleTag {
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: capitalize;
+}
+
+/* Distribution & Progress */
+.distributionList { display: flex; flex-direction: column; gap: 1.5rem; }
+
+.deptItem {}
+
+.deptInfo {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.6rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.progressBar {
+  height: 7px;
+  background: var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.progressFill {
+  height: 100%;
+  background: var(--primary);
+  border-radius: 10px;
+  transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Quick Links */
+.quickLinks { display: flex; flex-direction: column; gap: 0.75rem; }
+
+.linkBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 1rem;
+  background: var(--primary-light);
+  color: var(--primary);
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.linkBtn:hover {
+  background: var(--primary);
+  color: white;
+  transform: translateY(-2px);
+}
+
+/* Profile summary */
+.profileSummary { display: flex; flex-direction: column; gap: 1.5rem; }
+
+.summaryItem {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.summaryItem:last-child { border-bottom: none; }
+
+.summaryLabel {
+  font-size: 0.72rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  opacity: 0.4;
+}
+
+.summaryValue {
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: var(--foreground);
+}
+
+/* Salary preview */
+.salaryPreview {
+  background: var(--input);
+  border-radius: 12px;
+  padding: 1.5rem;
+  text-align: center;
+  margin-top: 0.75rem;
+}
+
+.salaryAmount {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #10b981;
+  letter-spacing: -0.8px;
+}
+
+.salaryAmount span {
+  font-size: 0.9rem;
+  font-weight: 600;
+  opacity: 0.6;
+  margin-left: 0.25rem;
+}
+
+.salaryNote {
+  font-size: 0.8rem;
+  opacity: 0.5;
+  margin-top: 0.35rem;
+  font-weight: 600;
+}
+
+/* Module Grid (Admin) */
+.moduleGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.moduleCard {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 2rem 1.5rem;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.moduleCard:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+
+.moduleIcon {
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.moduleTitle {
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: -0.3px;
+}
+
+.moduleList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.moduleList li {
+  font-size: 0.82rem;
+  opacity: 0.55;
+  font-weight: 600;
+}
+
+/* Sales Pipeline */
+.pipelineList { display: flex; flex-direction: column; gap: 1.5rem; }
+
+.pipelineItem {}
+
+.pipelineHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.6rem;
+}
+
+.pipelineStage {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.pipelineDot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.pipelineStats {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.pipelineDeals { font-size: 0.8rem; opacity: 0.5; font-weight: 600; }
+.pipelineValue { font-size: 0.9rem; font-weight: 800; }
+
+/* Team list */
+.teamList { display: flex; flex-direction: column; gap: 1rem; }
+
+.teamMember {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.75rem;
+  border-radius: 10px;
+  background: var(--input);
+}
+
+.teamMemberInfo {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.memberName { font-size: 0.9rem; font-weight: 700; }
+.memberRole { font-size: 0.78rem; opacity: 0.5; font-weight: 600; }
+
+/* Alert banner */
+.alertBanner {
+  margin-bottom: 1.5rem;
+  padding: 1rem 1.5rem;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.alertSuccess { background: #dcfce7; color: #16a34a; }
+.alertError { background: #fee2e2; color: #dc2626; }
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .dashboardGrid { grid-template-columns: 1fr; }
+  .title { font-size: 1.8rem; }
+}
+
+@media (max-width: 768px) {
+  .moduleGrid { grid-template-columns: 1fr 1fr; }
+  .statsGrid { grid-template-columns: 1fr 1fr; }
+}

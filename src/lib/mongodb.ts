@@ -17,7 +17,6 @@ interface MongooseCache {
 }
 
 declare global {
-  // eslint-disable-next-line no-var
   var mongoose: MongooseCache;
 }
 
@@ -52,9 +51,10 @@ async function connectDB() {
 
   try {
     cached.conn = await cached.promise;
-  } catch (e: any) {
-    console.error('Error in connectDB execution:', e.message);
-    throw e;
+  } catch (error: unknown) {
+    const message = error instanceof Error ? error.message : 'Unknown database error';
+    console.error('Error in connectDB execution:', message);
+    throw error;
   }
 
   return cached.conn;

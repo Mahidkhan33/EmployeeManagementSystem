@@ -19,7 +19,8 @@ export default function AddEmployeePage() {
     position: '',
     salary: '',
     joiningDate: new Date().toISOString().split('T')[0],
-    status: 'Active'
+    status: 'Active',
+    role: 'employee'
   });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
@@ -32,9 +33,13 @@ export default function AddEmployeePage() {
     setLoading(true);
 
     try {
+      const token = localStorage.getItem('ems_token');
       const res = await fetch('/api/employees', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+          ...(token ? { Authorization: `Bearer ${token}` } : {})
+        },
         body: JSON.stringify({
           ...formData,
           salary: Number(formData.salary)
@@ -47,7 +52,7 @@ export default function AddEmployeePage() {
         const data = await res.json();
         alert(data.error || 'Failed to create employee');
       }
-    } catch (error) {
+    } catch {
       alert('An error occurred. Please try again.');
     } finally {
       setLoading(false);
@@ -142,10 +147,24 @@ export default function AddEmployeePage() {
                     required
                   >
                     <option value="">Select Department</option>
-                    <option value="Engineering">Engineering</option>
-                    <option value="Marketing">Marketing</option>
-                    <option value="Sales">Sales</option>
                     <option value="HR">HR</option>
+                    <option value="Finance">Finance</option>
+                    <option value="Sales">Sales</option>
+                    <option value="IT">IT</option>
+                    <option value="Admin">Admin</option>
+                  </select>
+                </div>
+                <div className={styles.inputGroup}>
+                  <label>Role</label>
+                  <select
+                    name="role"
+                    value={formData.role}
+                    onChange={handleChange}
+                    required
+                  >
+                    <option value="employee">Employee</option>
+                    <option value="manager">Manager</option>
+                    <option value="admin">Admin</option>
                   </select>
                 </div>
                 <div className={styles.inputGroup}>

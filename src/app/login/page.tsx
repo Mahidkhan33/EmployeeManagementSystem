@@ -28,12 +28,12 @@ export default function LoginPage() {
 
       if (res.ok) {
         localStorage.setItem('ems_token', data.data.token);
-        localStorage.setItem('ems_user', JSON.stringify(data.data.admin));
+        localStorage.setItem('ems_user', JSON.stringify(data.data.user));
         router.push('/dashboard');
       } else {
         setError(data.error || 'Login failed');
       }
-    } catch (err) {
+    } catch {
       setError('An error occurred. Please try again.');
     } finally {
       setLoading(false);
@@ -47,8 +47,8 @@ export default function LoginPage() {
           <div className={styles.logo}>
             <Users size={32} color="white" />
           </div>
-          <h1 className={styles.title}>Admin Login</h1>
-          <p className={styles.subtitle}>Enter your credentials to access the dashboard</p>
+          <h1 className={styles.title}>EMS Login</h1>
+          <p className={styles.subtitle}>Enter your credentials to access your portal</p>
         </div>
 
         {error && <div className={styles.errorMessage}>{error}</div>}
@@ -100,7 +100,7 @@ export default function LoginPage() {
         </form>
 
         <div className={styles.footer}>
-          <p>Don't have an account? <a href="mailto:admin@ems.com">Contact Admin</a></p>
+          <p>Don&apos;t have an account? <a href="mailto:admin@ems.com">Contact Admin</a></p>
         </div>
       </div>
       
